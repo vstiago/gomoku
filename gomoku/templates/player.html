@@ -1,0 +1,51 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>{{player.class_name}} - Gomoku Bot Tournament</title>
+</head>
+<body>
+    <li>{{player.class_name}}</li>
+    <li>Author: {{player.name}}</li>
+    <br/>
+    <table>
+        <tr>
+            <th>Tournament</th>
+            <th>Score</th>
+        </tr>
+    {% for score in player.scores %}
+        <tr>
+            <td>{{score.tournament.name}}</td>
+            <td>{{score.total}}</td>
+        </tr>
+    {% endfor %}
+    </table>
+    <br/>
+    <table>
+        <tr>
+            <th>Tournament</th>
+            <th>Player O</th>
+            <th>Player X</th>
+            <th>Winner</th>
+        </tr>
+    {% for match in player.o_match %}
+        <tr>
+            <td>{{match.tournament.name}}</td>
+            <td>{{match.player_one.class_name}}</td>
+            <td>{{match.player_two.class_name}}</td>
+            <td>{{match.current_winner}}</td>
+            <td><a href="match?id={{match.id}}">details</a></td>
+        </tr>
+    {% endfor %}
+    {% for match in player.x_match %}
+        <tr>
+            <td>{{match.tournament.name}}</td>
+            <td>{{match.player_one.class_name}}</td>
+            <td>{{match.player_two.class_name}}</td>
+            <td>{{match.current_winner}}</td>
+            <td><a href="match?id=?{{match.id}}">details</a></td>
+        </tr>
+    {% endfor %}
+    </table>
+</body>
+</html>

@@ -1,0 +1,52 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>{{t.name}} Tournament - Gomoku Bot Tournament</title>
+</head>
+<body>
+    <li>{{t.name}} Tournament</li>
+    <li>Board size: {{t.board_size}}</li>
+    <br/>
+    <li>Score Board</li>
+    <table>
+        {% for score in t.scores %}
+        <tr>
+            <td>
+                <a href="player?id={{score.player.id}}">
+                    {{score.player.class_name}}
+                </a>
+            </td>
+            <td>{{score.total}}</td>
+        </tr>
+        {% endfor %}
+    </table>
+    <br/>
+    <li>Match Board</li>
+    <table>
+        <tr>
+            <th></th>
+            {% for match_line in matches_matrix %}
+                <th>{{match_line[0].player_one.class_name[0:2]}}</th>
+            {% endfor %}
+        </tr>
+        {% for match_line in matches_matrix %}
+        <tr>
+            <td>
+                <a href="player?id={{match_line[0].player_one.id}}">
+                {{match_line[0].player_one.class_name}}
+                </a>
+            </td>
+            {% for match in match_line %}
+            <td>
+                <a href="match?id={{match.id}}">
+                    {{match.current_winner}}
+                </a>
+            </td>
+            {% endfor %}
+        </tr>
+        {% endfor %}
+    </table>
+    <br/>
+</body>
+</html>

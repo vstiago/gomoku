@@ -1,0 +1,36 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Gomoku Bot Tournament</title>
+</head>
+<body>
+    <a href="submit" >Add your bot.</a><br/>
+    <br/>
+    {% for t in tournaments %}
+        <li><a href="tournament?id={{t.id}}">
+            {{t.name}} Tournament
+        </a></li>
+        <br/>
+        <li>Score Board</li>
+        <table>
+        {% for score in t.scores[:5] %}
+            <tr>
+                <td>
+                    <a href="player?id={{score.player.id}}">
+                        {{score.player.class_name}}
+                    </a>
+                </td>
+                <td>{{score.total}}</td>
+            </tr>
+            {% endfor %}
+        </table>
+        <li><a href="tournament?id={{t.id}}">see more...</a></li>
+    <br/>
+    <br/>
+    {% endfor %}
+    <br/>
+    <br/>
+    <a href="submit" >Add your bot.</a>
+</body>
+</html>
